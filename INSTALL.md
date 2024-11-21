@@ -216,13 +216,14 @@ You have two options: *Python's virtual environments* or *conda*:
     ***OR***
 
     ```sh
-    conda create --name backendEnv python=3.7
+    conda create --name backendEnv python=3.12
     conda activate backendEnv
     ```
 
 3. Install python dependencies:
 
     ```sh
+    cd backend
     pip install -r requirements.txt
     ```
 

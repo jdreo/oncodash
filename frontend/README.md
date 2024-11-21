@@ -42,14 +42,19 @@ It builds on top of standard HTML, CSS, and JavaScript and provides a declarativ
 
 Managing the server is done with the ususal node.js commands, setup in the package.json scripts declarations.
 
+Use the supported npm version:
+```sh
+nvm use 20.0.0
+```
+
 Install dependencies
 
-```bash
+```sh
 npm install
 ```
 
 Start the development server:
 
-```bash
+```sh
 npm run dev
 ```

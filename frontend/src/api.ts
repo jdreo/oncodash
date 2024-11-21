@@ -13,6 +13,9 @@ const apiURL = import.meta.env.ONCODASH_API_URL
 const api = axios.create({ baseURL: apiURL })
 const cookies = new Cookies()
 
+const aiforia = axios.create({ baseURL: "http://127.0.0.1:9999"})
+
+
 // Interceptors
 // =========================================================================
 
@@ -36,6 +39,22 @@ api.interceptors.response.use(response => {
 }, (error) => {
   if (error.response.status === 401) router.push({ name: "LoginPage" })
   else return Promise.reject(error)
+})
+
+
+aiforia.interceptors.request.use(config => {
+  useApiState().addRequest()
+  return config
+}, (error) => {
+  return Promise.reject(error)
+})
+
+aiforia.interceptors.response.use(response => {
+  useApiState().removeRequest()
+  return response
+}, (error) => {
+  useApiState().removeRequest()
+  return Promise.reject(error)
 })
 
 // API
@@ -75,5 +94,10 @@ export default {
         'Authorization': `Token ${cookies.get('token')}`
       }
     })
-  }
+  },
+  getAIForIARunSummary: async function (aiforiarunid : AIForIARunID): Promise<AxiosResponse<AIForIARunSummary>> {
+      console.log("AIForAIRunID:",aiforairunid);
+      return await aiforia.get(`/v2/analysis/ia-runs/${aiforiarunid}/summary`, {
+    })
+  },
 }

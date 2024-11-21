@@ -7,6 +7,7 @@
 
   <section class="patient-data" v-if="patient">
     <AppTabs>
+
       <AppTabsPanel name="CLINICAL DATA">
         <PatientClinical :patient="patient"></PatientClinical>
       </AppTabsPanel>
@@ -14,6 +15,11 @@
       <AppTabsPanel name="GENOMIC DATA">
         <PatientGenomic :patient="patient"></PatientGenomic>
       </AppTabsPanel>
+
+      <AppTabsPanel name="AI run">
+        <AIForIARunSummaryCard></AIForIARunSummaryCard>
+      </AppTabsPanel>
+
     </AppTabs>
   </section>
 </template>
@@ -27,6 +33,8 @@ import AppTabsPanel from './AppTabsPanel.vue'
 import PatientSummary from "./PatientSummary.vue"
 import PatientClinical from "./PatientClinical.vue"
 import PatientGenomic from "./PatientGenomic.vue"
+import AIForIARunSummaryCard from "./AIForIARunSummaryCard.vue"
+
 import { Patient, PatientID } from '../models/Patient'
 
 const props = defineProps<{
